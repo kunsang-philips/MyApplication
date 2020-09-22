@@ -44,6 +44,9 @@ class MainActivity : AppCompatActivity() {
         flow.setOnClickListener {
             startActivity(Intent(this, FlowActivity::class.java))
         }
+        flow1.setOnClickListener {
+            startActivity(Intent(this, FlowRealTimeActivity::class.java))
+        }
     }
 
 

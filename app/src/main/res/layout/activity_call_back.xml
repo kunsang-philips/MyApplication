@@ -10,12 +10,17 @@
     <TextView
         android:id="@+id/textMessage"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Start" />
+        android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Execute" />
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="type something" />
 </LinearLayout>

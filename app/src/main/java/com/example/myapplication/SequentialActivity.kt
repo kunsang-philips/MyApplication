@@ -29,6 +29,7 @@ class SequentialActivity : AppCompatActivity() {
     }
 
     private suspend fun doSomeWork(textView: TextView) {
+
         Log.d("FAFA", "Inside doSomeWork {${Thread.currentThread().name}}")
         for (i in 0..10) {
             delay(500)
@@ -36,5 +37,12 @@ class SequentialActivity : AppCompatActivity() {
                 textView.text = "Count:  $i"
             }
         }
+    }
+}
+
+class KunsangThread : Thread() {
+
+    override fun run() {
+        super.run()
     }
 }

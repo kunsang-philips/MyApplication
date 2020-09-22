@@ -13,7 +13,7 @@ class ParallelActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_parallel)
-         //firstApproach()
+        //firstApproach()
         secondApproach()
     }
 

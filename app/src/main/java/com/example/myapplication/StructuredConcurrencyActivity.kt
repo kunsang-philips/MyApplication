@@ -113,7 +113,7 @@ class StructuredConcurrencyActivity : AppCompatActivity() {
                 Log.e("FAFA", "Parent Job Failed")
             } else {
                 textView.text = "Parent Job Successful"
-                Log.e("FAFA", "Parent Job Successful")
+                Log.d("FAFA", "Parent Job Successful")
             }
         }
     }
@@ -121,8 +121,8 @@ class StructuredConcurrencyActivity : AppCompatActivity() {
     private suspend fun doSomeWork(number: Int): Int {
         delay(number * 1000L)
         if (number == 2) {
-            throw Exception("Error in $number")
-            //throw CancellationException("Error in $number")
+            //throw Exception("Error in $number")
+            throw CancellationException("Error in $number")
         }
         return number
     }

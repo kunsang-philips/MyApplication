@@ -2,8 +2,10 @@ package com.example.myapplication
 
 import android.os.AsyncTask
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_basics.*
+import kotlinx.coroutines.Dispatchers.Default
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
@@ -24,7 +26,13 @@ class BasicsActivity : AppCompatActivity() {
             callNormalFunction("Welcome ")
             GlobalScope.launch(Main) {
                 // launch a new coroutine in background and continue
-                callNormalFunction("World ")
+                // callNormalFunction("World ")
+
+                Thread.sleep(1000)
+                Log.d("FAFA", "Kunsang ${Thread.currentThread().name} ${Thread.currentThread().id}")
+                runOnUiThread {
+                    textView.append("World")
+                }
             }
             callNormalFunction("to ")
             callNormalFunction("Android ")
@@ -34,7 +42,8 @@ class BasicsActivity : AppCompatActivity() {
     private fun callNormalFunction(string: String) {
         AsyncTask.execute {
             Thread.sleep(1000)
-            runOnUiThread{
+            Log.d("FAFA", "${Thread.currentThread().name} ${Thread.currentThread().id}")
+            runOnUiThread {
                 textView.append(string)
             }
         }

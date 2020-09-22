@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import kotlinx.android.synthetic.main.activity_scope_second.*
+import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
@@ -30,7 +31,7 @@ class ScopeSecondActivity : AppCompatActivity() {
 
     private fun firstApproach() {
         start.setOnClickListener {
-            GlobalScope.launch(Main) {
+            GlobalScope.launch(IO) {
                 doSomeLongRunningTask()
             }
         }

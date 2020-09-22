@@ -21,10 +21,10 @@ class GlobalScopeActivity : AppCompatActivity() {
                 textView.text = "Job started"
                 parentJob = CoroutineScope(Main).launch {
                     launch {
-                        doSomeLongRunningWork1("Work1")
+                        doSomeLongRunningWork1("Coroutine Scope work")
                     }
                     GlobalScope.launch {
-                        doSomeLongRunningWork2("Work2")
+                        doSomeLongRunningWork2("Global Scope work")
                     }
                 }
             } else {

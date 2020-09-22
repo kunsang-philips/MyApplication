@@ -11,7 +11,7 @@ class CallBackActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_call_back)
         button.setOnClickListener {
-            textMessage.text = "Start"
+            textMessage.text = "Start ..."
             val someImplClass = SomeImplClass()
             someImplClass.doLongRunningTask(object : LongRunningTask {
                 override fun onLongRunningTask(someMessage: String) {
@@ -33,15 +33,15 @@ class CallBackActivity : AppCompatActivity() {
 
 class SomeImplClass {
     fun doLongRunningTask(longRunningTask: LongRunningTask) {
-        AsyncTask.execute {
-            Thread.sleep(3000)
-            longRunningTask.onLongRunningTask("doLongRunningTask is done")
-        }
+        Thread.sleep(3000)
+        longRunningTask.onLongRunningTask("doLongRunningTask is done")
     }
 
     fun doAnotherLongRunningTaskAfter(longRunningTask: LongRunningTask) {
-        Thread.sleep(3000)
-        longRunningTask.onLongRunningTask("doAnotherLongRunningTaskAfter is done")
+        AsyncTask.execute {
+            Thread.sleep(3000)
+            longRunningTask.onLongRunningTask("doAnotherLongRunningTaskAfter is done")
+        }
     }
 }
 
