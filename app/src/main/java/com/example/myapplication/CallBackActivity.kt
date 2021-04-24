@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_call_back.*
 
-
 class CallBackActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

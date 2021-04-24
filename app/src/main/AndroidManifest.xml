@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FlowRealTimeActivity"></activity>
+        <activity android:name=".ui.main.RoomDBActivity"></activity>
+        <activity android:name=".FlowRealTimeActivity" />
         <activity android:name=".FlowActivity" />
         <activity android:name=".LiveDataActivity" />
         <activity android:name=".StructuredConcurrencyActivity" />

@@ -4,16 +4,15 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import kotlinx.android.synthetic.main.activity_sequential.*
 import kotlinx.coroutines.*
-import kotlinx.coroutines.Dispatchers.Default
-import kotlinx.coroutines.Dispatchers.Main
 
 class ParallelActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_parallel)
-        //firstApproach()
+        // firstApproach()
         secondApproach()
     }
 
@@ -23,9 +22,9 @@ class ParallelActivity : AppCompatActivity() {
             firstTextView.text = "FirstTextView"
             secondTextView.text = "SecondTextView"
 
-            GlobalScope.launch(Main) {
-                val firstTask = async { doSomeWork(firstTextView) }
-                val secondTask = async { doSomeWork(secondTextView) }
+            lifecycleScope.launch {
+                val firstTask = async { doSomeWork(firstTextView, 5) }
+                val secondTask = async { doSomeWork(secondTextView, 10) }
                 firstTask.await()
                 secondTask.await()
                 start.text = "End"
@@ -39,30 +38,25 @@ class ParallelActivity : AppCompatActivity() {
             firstTextView.text = "FirstTextView"
             secondTextView.text = "SecondTextView"
             Log.d("FAFA", "Before count thread: ${Thread.currentThread().name}")
-            GlobalScope.launch(Main) {
-                launch(Default) {
-                    doSomeWork(firstTextView)
-                    withContext(Main) {
-                        firstTextView.text = "Count Done"
-                    }
+            lifecycleScope.launch {
+                val job1 = launch {
+                    doSomeWork(firstTextView, 5)
+                    firstTextView.text = "Count Done"
                 }
-                launch(Default) {
-                    doSomeWork(secondTextView)
-                    withContext(Main) {
-                        secondTextView.text = "Count Done"
-                    }
+                val job2 = launch {
+                    doSomeWork(secondTextView, 10)
+                    secondTextView.text = "Count Done"
                 }
+                job1.join()
                 start.text = "End"
             }
         }
     }
 
-    private suspend fun doSomeWork(textView: TextView) {
-        for (i in 0..10) {
+    private suspend fun doSomeWork(textView: TextView, times: Int) {
+        for (i in 0..times) {
             delay(500)
-            withContext(Main) {
-                textView.text = "Count:  $i"
-            }
+            textView.text = "Count:  $i"
         }
     }
 }

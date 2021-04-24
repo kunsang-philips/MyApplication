@@ -2,15 +2,35 @@ package com.example.myapplication
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_global_scope.*
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.supervisorScope
+import java.io.InvalidClassException
 
 class StructuredConcurrencyActivity : AppCompatActivity() {
     var parentJob: Job? = null
     private val handler = CoroutineExceptionHandler { _, exception ->
-        Log.e("FAFA", "Exception thrown $exception")
+        when (exception) {
+            is InvalidClassException -> {
+                Toast.makeText(this, "InvalidClassException", Toast.LENGTH_SHORT).show()
+            }
+            is OutOfMemoryError -> {
+                Toast.makeText(this, "OutOfMemoryError", Toast.LENGTH_SHORT).show()
+            }
+            is java.lang.NumberFormatException -> {
+                Toast.makeText(this, "NumberFormatException", Toast.LENGTH_SHORT).show()
+            }
+            else -> {
+                Toast.makeText(this, "Other Exception", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,7 +38,7 @@ class StructuredConcurrencyActivity : AppCompatActivity() {
         setContentView(R.layout.activity_structured_concurrency)
         button.setOnClickListener {
             textView.text = "Starting Job..."
-            //startParentJob()
+            // startParentJob()
             startSupervisedJob()
         }
     }
@@ -26,104 +46,44 @@ class StructuredConcurrencyActivity : AppCompatActivity() {
     private fun startSupervisedJob() {
         parentJob = CoroutineScope(Main).launch(handler) {
             supervisorScope {
-                // Job A
-                val jobA = launch {
-                    val result = doSomeWork(1)
+                // Job A 
+                launch {
+                    val result = doSomeWork1()
                     Log.d("FAFA", "Result A $result")
-                }
-                jobA.invokeOnCompletion {
-                    if (it != null) {
-                        Log.e("FAFA", "error getting resultA: $it")
-                    }
                 }
 
                 // Job B
-                val jobB = launch {
-                    val result = doSomeWork(2)
+                launch {
+                    val result = doSomeWork2()
                     Log.d("FAFA", "Result B $result")
                 }
-                jobB.invokeOnCompletion {
-                    if (it != null) {
-                        Log.e("FAFA", "error getting resultB: $it")
-                    }
-                }
-
-                // Job C
-                val jobC = launch {
-                    val result = doSomeWork(3)
+                // Job B
+                launch {
+                    val result = doSomeWork3()
                     Log.d("FAFA", "Result C $result")
                 }
-                jobC.invokeOnCompletion {
-                    if (it != null) {
-                        Log.e("FAFA", "error getting resultC: $it")
-                    }
-                }
-            }
-
-        }
-        parentJob?.invokeOnCompletion {
-            if (it != null) {
-                textView.text = "Parent Job Failed"
-                Log.e("FAFA", "Parent Job Failed")
-            } else {
-                textView.text = "Parent Job Successful"
-                Log.e("FAFA", "Parent Job Successful")
+                doSomeWork4()
             }
         }
     }
 
-    private fun startParentJob() {
-        parentJob = CoroutineScope(Main).launch(handler) {
-            // Job A
-            val jobA = launch {
-                val result = doSomeWork(1)
-                Log.d("FAFA", "Result A $result")
-            }
-            jobA.invokeOnCompletion {
-                if (it != null) {
-                    Log.e("FAFA", "error getting resultA: $it")
-                }
-            }
-
-            // Job B
-            val jobB = launch {
-                val result = doSomeWork(2)
-                Log.d("FAFA", "Result B $result")
-            }
-            jobB.invokeOnCompletion {
-                if (it != null) {
-                    Log.e("FAFA", "error getting resultB: $it")
-                }
-            }
-
-            // Job C
-            val jobC = launch {
-                val result = doSomeWork(3)
-                Log.d("FAFA", "Result C $result")
-            }
-            jobC.invokeOnCompletion {
-                if (it != null) {
-                    Log.e("FAFA", "error getting resultC: $it")
-                }
-            }
-        }
-        parentJob?.invokeOnCompletion {
-            if (it != null) {
-                textView.text = "Parent Job Failed"
-                Log.e("FAFA", "Parent Job Failed")
-            } else {
-                textView.text = "Parent Job Successful"
-                Log.d("FAFA", "Parent Job Successful")
-            }
-        }
+    private suspend fun doSomeWork1(): Int {
+        delay(1 * 1000L)
+        throw InvalidClassException("Error in 1")
     }
 
-    private suspend fun doSomeWork(number: Int): Int {
-        delay(number * 1000L)
-        if (number == 2) {
-            //throw Exception("Error in $number")
-            throw CancellationException("Error in $number")
-        }
-        return number
+    private suspend fun doSomeWork2(): Int {
+        delay(2 * 1000L)
+        throw OutOfMemoryError("Error in 2")
+    }
+
+    private suspend fun doSomeWork3(): Int {
+        delay(3 * 1000L)
+        throw NumberFormatException("Error in 3")
+    }
+
+    private suspend fun doSomeWork4(): Int {
+        delay(4 * 1000L)
+        throw Exception("Error in Parent")
     }
 }

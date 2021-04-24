@@ -10,14 +10,13 @@ import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import java.util.concurrent.atomic.AtomicBoolean
+import kotlinx.coroutines.withContext
 
 class ScopeSecondActivity : AppCompatActivity() {
-    private val shouldStop = AtomicBoolean(false)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scope_second)
-        //firstApproach()
+        // firstApproach()
         secondApproach()
     }
 
@@ -38,10 +37,10 @@ class ScopeSecondActivity : AppCompatActivity() {
     }
 
     private suspend fun doSomeLongRunningTask() {
-        Toast.makeText(this, "Work Started", Toast.LENGTH_SHORT).show()
-        delay(5000L)
-        if (!shouldStop.get()) {
-            Toast.makeText(this, "Work Ended", Toast.LENGTH_SHORT).show()
+        withContext(Main) {
+            Toast.makeText(this@ScopeSecondActivity, "Work Started", Toast.LENGTH_SHORT).show()
+            delay(5000L)
+            Toast.makeText(this@ScopeSecondActivity, "Work Ended", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -53,6 +52,5 @@ class ScopeSecondActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        shouldStop.set(true)
     }
 }

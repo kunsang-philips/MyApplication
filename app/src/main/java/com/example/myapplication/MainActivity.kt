@@ -3,6 +3,7 @@ package com.example.myapplication
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.myapplication.ui.main.RoomDBActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -17,7 +18,6 @@ class MainActivity : AppCompatActivity() {
         basic.setOnClickListener {
             startActivity(Intent(this, BasicsActivity::class.java))
         }
-
 
         sequential.setOnClickListener {
             startActivity(Intent(this, SequentialActivity::class.java))
@@ -47,7 +47,8 @@ class MainActivity : AppCompatActivity() {
         flow1.setOnClickListener {
             startActivity(Intent(this, FlowRealTimeActivity::class.java))
         }
+        roomDB.setOnClickListener {
+            startActivity(Intent(this, RoomDBActivity::class.java))
+        }
     }
-
-
 }
