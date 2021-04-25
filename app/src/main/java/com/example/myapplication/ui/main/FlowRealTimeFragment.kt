@@ -26,12 +26,13 @@ class FlowRealTimeFragment : Fragment() {
     private lateinit var viewModel: FlowViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         viewBinder =
             DataBindingUtil.inflate(inflater, R.layout.flow_real_time_fragment, container, false)
-        viewBinder.root.buttonFetch.setOnClickListener {
+        viewBinder.button.setOnClickListener {
             viewModel.sendOtp()
             lifecycleScope.launch(Dispatchers.Main) {
                 viewModel.flowTimer?.collect {
@@ -49,5 +50,4 @@ class FlowRealTimeFragment : Fragment() {
         viewBinder.lifecycleOwner = viewLifecycleOwner
         viewBinder.executePendingBindings()
     }
-
 }
