@@ -1,12 +1,17 @@
-package com.example.myapplication
+package com.example.myapplication.parallel
 
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import kotlinx.android.synthetic.main.activity_sequential.*
-import kotlinx.coroutines.*
+import com.example.myapplication.R
+import kotlinx.android.synthetic.main.activity_sequential.firstTextView
+import kotlinx.android.synthetic.main.activity_sequential.secondTextView
+import kotlinx.android.synthetic.main.activity_sequential.start
+import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class ParallelActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

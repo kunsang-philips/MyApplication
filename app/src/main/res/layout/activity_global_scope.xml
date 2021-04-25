@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".GlobalScopeActivity">
+    tools:context=".scopes.GlobalScopeActivity">
 
     <TextView
         android:id="@+id/work1"

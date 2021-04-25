@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.myapplication.ui.main.LiveDataViewModel" />
+            type="com.example.myapplication.livedata.LiveDataViewModel" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -22,17 +22,29 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{viewModel.liveDataString}"
+            android:text="@{viewModel.users}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/buttonFetch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Click Me" />
+            android:text="Fetch" />
+
+        <Button
+            android:text="Insert More Users"
+            android:id="@+id/buttonInsertMoreUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:text="Delete All Users"
+            android:id="@+id/buttonDeleteAllUsers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
 </layout>

@@ -1,9 +1,10 @@
-package com.example.myapplication
+package com.example.myapplication.structured
 
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.myapplication.R
 import kotlinx.android.synthetic.main.activity_global_scope.*
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope

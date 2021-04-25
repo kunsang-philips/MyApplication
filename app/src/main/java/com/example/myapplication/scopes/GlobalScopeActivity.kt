@@ -1,9 +1,9 @@
-package com.example.myapplication
+package com.example.myapplication.scopes
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import kotlinx.android.synthetic.main.activity_basics.*
+import com.example.myapplication.R
 import kotlinx.android.synthetic.main.activity_basics.button
 import kotlinx.android.synthetic.main.activity_basics.textView
 import kotlinx.android.synthetic.main.activity_global_scope.*

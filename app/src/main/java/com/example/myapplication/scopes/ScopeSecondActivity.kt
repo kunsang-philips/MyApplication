@@ -1,9 +1,10 @@
-package com.example.myapplication
+package com.example.myapplication.scopes
 
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.example.myapplication.R
 import kotlinx.android.synthetic.main.activity_scope_second.*
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
