@@ -3,7 +3,10 @@ package com.example.myapplication
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.myapplication.ui.main.RoomDBActivity
+import com.example.myapplication.basic.BasicsActivity
+import com.example.myapplication.livedata.LiveDataActivity
+import com.example.myapplication.room.RoomDBActivity
+import com.example.myapplication.workmanager.WorkmanagerActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -49,6 +52,9 @@ class MainActivity : AppCompatActivity() {
         }
         roomDB.setOnClickListener {
             startActivity(Intent(this, RoomDBActivity::class.java))
+        }
+        workManager.setOnClickListener {
+            startActivity(Intent(this, WorkmanagerActivity::class.java))
         }
     }
 }

@@ -1,12 +1,10 @@
-package com.example.myapplication.ui.main
+package com.example.myapplication.room
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
 import com.example.myapplication.R
-import com.example.myapplication.room.AppDatabase
-import com.example.myapplication.room.User
 import kotlinx.android.synthetic.main.activity_room_d_b.textView
 import kotlinx.coroutines.launch
 

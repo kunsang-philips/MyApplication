@@ -9,13 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.main.RoomDBActivity"></activity>
+        <activity android:name=".workmanager.WorkmanagerActivity"></activity>
+        <activity android:name=".room.RoomDBActivity" />
         <activity android:name=".FlowRealTimeActivity" />
         <activity android:name=".FlowActivity" />
-        <activity android:name=".LiveDataActivity" />
+        <activity android:name=".livedata.LiveDataActivity" />
         <activity android:name=".StructuredConcurrencyActivity" />
         <activity android:name=".GlobalScopeActivity" />
-        <activity android:name=".BasicsActivity" />
+        <activity android:name=".basic.BasicsActivity" />
         <activity android:name=".CallBackActivity" />
         <activity android:name=".ScopeSecondActivity" />
         <activity android:name=".ScopeActivity" />
