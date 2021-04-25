@@ -1,17 +1,44 @@
 package com.example.myapplication.ui.main
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
+import androidx.lifecycle.viewModelScope
+import com.example.myapplication.room.User
+import com.example.myapplication.ui.main.repository.UserRepository
+import kotlinx.coroutines.launch
 
 class LiveDataViewModel : ViewModel() {
-    private val dataString = MutableLiveData("Android Rocks!! ")
-    fun load() {
-        dataString.postValue(dataString.value.plus("B. "))
+    val users = MutableLiveData("Fetch Users")
+    private lateinit var userRepository: UserRepository
+    fun load(userRepository: UserRepository) {
+        this.userRepository = userRepository
     }
 
-    val liveDataString = liveData {
-        emit(dataString.value)
-        emitSource(dataString)
+    fun fetchUsers(): LiveData<List<User>> {
+        return userRepository.getAllUsers()
+    }
+
+    fun insertMoreUsers() {
+        val users = mutableListOf<User>()
+        users.add(User(3, "Shekhar", "Dhavan"))
+        users.add(User(4, "MS", "Dhoni"))
+        viewModelScope.launch {
+            userRepository.insertUsers(users)
+        }
+    }
+
+    fun deleteAll() {
+        viewModelScope.launch {
+            userRepository.deleteAllUser()
+        }
+    }
+
+    fun updateUsers(users: List<User>) {
+        var text = ""
+        users.forEach {
+            text += "${it.firstName} ${it.lastName}\n"
+        }
+        this.users.postValue(text)
     }
 }

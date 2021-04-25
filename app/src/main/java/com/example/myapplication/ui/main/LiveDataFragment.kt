@@ -7,12 +7,17 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.room.Room
 import com.example.myapplication.R
 import com.example.myapplication.databinding.LivedataFragmentBinding
-import kotlinx.android.synthetic.main.livedata_fragment.view.*
+import com.example.myapplication.room.AppDatabase
+import com.example.myapplication.ui.main.repository.UserRepositoryImpl
+import kotlinx.coroutines.launch
 
 class LiveDataFragment : Fragment() {
     private lateinit var viewBinder: LivedataFragmentBinding
+    private lateinit var db: AppDatabase
 
     companion object {
         fun newInstance() = LiveDataFragment()
@@ -21,12 +26,25 @@ class LiveDataFragment : Fragment() {
     private lateinit var viewModel: LiveDataViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        initializeRoomDB()
         viewBinder = DataBindingUtil.inflate(inflater, R.layout.livedata_fragment, container, false)
-        viewBinder.root.button.setOnClickListener {
-            viewModel.load()
+        viewBinder.buttonFetch.setOnClickListener {
+            viewModel.fetchUsers().observe(
+                viewLifecycleOwner,
+                {
+                    viewModel.updateUsers(it)
+                }
+            )
+        }
+        viewBinder.buttonInsertMoreUser.setOnClickListener {
+            viewModel.insertMoreUsers()
+        }
+        viewBinder.buttonDeleteAllUsers.setOnClickListener {
+            viewModel.deleteAll()
         }
         return viewBinder.root
     }
@@ -37,6 +55,13 @@ class LiveDataFragment : Fragment() {
         viewBinder.viewModel = viewModel
         viewBinder.lifecycleOwner = viewLifecycleOwner
         viewBinder.executePendingBindings()
+        viewModel.load(UserRepositoryImpl(db.userDao()))
     }
 
+    private fun initializeRoomDB() {
+        db = Room.databaseBuilder(
+            requireActivity().applicationContext,
+            AppDatabase::class.java, "database-name"
+        ).build()
+    }
 }

@@ -24,7 +24,7 @@ class RoomDBActivity : AppCompatActivity() {
     }
 
     private suspend fun displayUser() {
-        db.userDao().getAll().forEach {
+        db.userDao().getAll().value?.forEach {
             textView.append("${it.firstName} ${it.lastName}\n")
         }
     }

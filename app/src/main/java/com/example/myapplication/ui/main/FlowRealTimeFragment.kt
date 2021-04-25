@@ -31,7 +31,7 @@ class FlowRealTimeFragment : Fragment() {
     ): View {
         viewBinder =
             DataBindingUtil.inflate(inflater, R.layout.flow_real_time_fragment, container, false)
-        viewBinder.root.button.setOnClickListener {
+        viewBinder.root.buttonFetch.setOnClickListener {
             viewModel.sendOtp()
             lifecycleScope.launch(Dispatchers.Main) {
                 viewModel.flowTimer?.collect {
