@@ -10,7 +10,7 @@ import com.example.myapplication.room.User
 @Dao
 interface UserDaoForWorkManager {
     @Query("SELECT * FROM user")
-    fun getAll(): LiveData<List<User>>
+    suspend fun getAll(): LiveData<List<User>>?
 
     @Query(
         "SELECT * FROM user WHERE first_name LIKE :first AND " +

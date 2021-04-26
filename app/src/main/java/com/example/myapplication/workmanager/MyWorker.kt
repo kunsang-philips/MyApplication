@@ -62,7 +62,7 @@ class MyWorker(context: Context, workerParams: WorkerParameters) :
 
     private suspend fun getUsers(): String {
         var text = ""
-        db.userDaoWithLiveData().getAll().value?.forEach {
+        db.userDaoWithLiveData().getAll()?.value?.forEach {
             text += ("${it.firstName} ${it.lastName}\n")
         }
         return text
