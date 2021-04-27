@@ -7,13 +7,11 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
 import com.example.myapplication.R
 import com.example.myapplication.databinding.LivedataFragmentBinding
 import com.example.myapplication.repository.UserRepositoryImpl
 import com.example.myapplication.room.AppDatabase
-import kotlinx.coroutines.launch
 
 class LiveDataFragment : Fragment() {
     private lateinit var viewBinder: LivedataFragmentBinding
