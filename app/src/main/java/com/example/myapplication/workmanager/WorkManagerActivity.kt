@@ -1,6 +1,7 @@
 package com.example.myapplication.workmanager
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
@@ -14,6 +15,7 @@ class WorkManagerActivity : AppCompatActivity() {
         val workRequest = OneTimeWorkRequest.Builder(MyWorker::class.java).build()
         buttonEnqueue.setOnClickListener {
             WorkManager.getInstance(this).enqueue(workRequest)
+            Toast.makeText(this, "Work done", Toast.LENGTH_SHORT).show()
         }
     }
 }

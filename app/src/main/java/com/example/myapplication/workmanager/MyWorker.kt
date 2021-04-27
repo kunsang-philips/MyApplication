@@ -4,6 +4,7 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.os.Build
+import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.room.Room
 import androidx.work.Worker
@@ -11,24 +12,20 @@ import androidx.work.WorkerParameters
 import com.example.myapplication.R
 import com.example.myapplication.room.AppDatabase
 import com.example.myapplication.room.User
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.launch
 
-class MyWorker(context: Context, workerParams: WorkerParameters) :
+class MyWorker(val context: Context, workerParams: WorkerParameters) :
     Worker(context, workerParams) {
     private lateinit var db: AppDatabase
 
     override fun doWork(): Result {
-        CoroutineScope(IO).launch {
-            doSomeDBOperation()
-        }
+        doSomeDBOperation()
         return Result.success()
     }
 
-    private suspend fun doSomeDBOperation() {
+    private fun doSomeDBOperation() {
         initializeRoomDB()
         insertUsers()
+        Thread.sleep(5000)
         displayNotification("My Worker", getUsers())
     }
 
@@ -60,15 +57,16 @@ class MyWorker(context: Context, workerParams: WorkerParameters) :
         ).build()
     }
 
-    private suspend fun getUsers(): String {
+    private fun getUsers(): String {
+        Log.e("FAFA", "Thread : ${Thread.currentThread().name}")
         var text = ""
-        db.userDao().getAll().value?.forEach {
+        db.userDao().getAll().forEach {
             text += ("${it.firstName} ${it.lastName}\n")
         }
         return text
     }
 
-    private suspend fun insertUsers() {
+    private fun insertUsers() {
         val list = mutableListOf<User>()
         list.add(User(1, "Virat", "Kohli"))
         list.add(User(2, "Rohit", "Sharma"))

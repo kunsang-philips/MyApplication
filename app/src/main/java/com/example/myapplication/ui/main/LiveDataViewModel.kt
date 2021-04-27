@@ -1,6 +1,5 @@
 package com.example.myapplication.ui.main
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -15,7 +14,7 @@ class LiveDataViewModel : ViewModel() {
         this.userRepository = userRepository
     }
 
-    fun fetchUsers(): LiveData<List<User>> {
+    fun fetchUsers(): List<User> {
         return userRepository.getAllUsers()
     }
 
