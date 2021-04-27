@@ -7,6 +7,7 @@ import androidx.room.Room
 import com.example.myapplication.R
 import com.example.myapplication.room.AppDatabase
 import com.example.myapplication.room.User
+import kotlinx.android.synthetic.main.activity_room_d_b.buttonFetch
 import kotlinx.android.synthetic.main.activity_room_d_b.textView
 import kotlinx.coroutines.launch
 
@@ -17,13 +18,16 @@ class RoomDBActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_room_d_b)
         initializeRoomDB()
-        lifecycleScope.launch {
-            insertUsers()
-            displayUser()
+        buttonFetch.setOnClickListener {
+            lifecycleScope.launch {
+                insertUsers()
+                displayUser()
+            }
         }
     }
 
     private suspend fun displayUser() {
+        textView.text = ""
         db.userDao().getAll().forEach {
             textView.append("${it.firstName} ${it.lastName}\n")
         }

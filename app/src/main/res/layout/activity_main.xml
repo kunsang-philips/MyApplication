@@ -68,19 +68,22 @@
             android:id="@+id/liveData"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Live Data" />
+            android:text="Live Data"
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/flow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Basic Flow" />
+            android:text="Basic Flow"
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/flow1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Realtime Flow" />
+            android:text="Realtime Flow"
+            android:visibility="gone" />
 
     </LinearLayout>
 </ScrollView>
