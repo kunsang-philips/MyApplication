@@ -18,15 +18,32 @@ class MyWorker(val context: Context, workerParams: WorkerParameters) :
     private lateinit var db: AppDatabase
 
     override fun doWork(): Result {
-        doSomeDBOperation()
+        if (!isStopped)
+            initializeRoomDB()
+        if (!isStopped)
+            dbOperation()
+        if (!isStopped) {
+            networkOperation()
+        }
+        if (!isStopped)
+            displayNotification("My Worker", getUsers())
         return Result.success()
     }
 
-    private fun doSomeDBOperation() {
-        initializeRoomDB()
-        insertUsers()
+    private fun networkOperation() {
+        // simulate network operation
         Thread.sleep(5000)
-        displayNotification("My Worker", getUsers())
+        val users = mutableListOf<User>()
+        users.add(User(3, "Sachin", "Tendulkar"))
+        users.add(User(4, "Rahul", "Dravid"))
+        insertUsers(users)
+    }
+
+    private fun dbOperation() {
+        val users = mutableListOf<User>()
+        users.add(User(1, "Virat", "Kohli"))
+        users.add(User(2, "Rohit", "Sharma"))
+        insertUsers(users)
     }
 
     private fun displayNotification(title: String, task: String) {
@@ -66,10 +83,7 @@ class MyWorker(val context: Context, workerParams: WorkerParameters) :
         return text
     }
 
-    private fun insertUsers() {
-        val list = mutableListOf<User>()
-        list.add(User(1, "Virat", "Kohli"))
-        list.add(User(2, "Rohit", "Sharma"))
-        db.userDao().insertAll(list)
+    private fun insertUsers(users: List<User>) {
+        db.userDao().insertAll(users)
     }
 }

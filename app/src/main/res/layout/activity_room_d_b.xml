@@ -20,4 +20,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Fetch Users" />
+
+    <Button
+        android:id="@+id/buttonDeleteAllUsers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete all users" />
 </LinearLayout>

@@ -7,6 +7,7 @@ import androidx.room.Room
 import com.example.myapplication.R
 import com.example.myapplication.room.AppDatabase
 import com.example.myapplication.room.User
+import kotlinx.android.synthetic.main.activity_room_d_b.buttonDeleteAllUsers
 import kotlinx.android.synthetic.main.activity_room_d_b.buttonFetch
 import kotlinx.android.synthetic.main.activity_room_d_b.textView
 
@@ -21,6 +22,13 @@ class RoomDBActivity : AppCompatActivity() {
             textView.text = ""
             AsyncTask.execute {
                 insertUsers()
+                displayUser()
+            }
+        }
+        buttonDeleteAllUsers.setOnClickListener {
+            textView.text = ""
+            AsyncTask.execute {
+                db.userDao().deleteAll()
                 displayUser()
             }
         }
