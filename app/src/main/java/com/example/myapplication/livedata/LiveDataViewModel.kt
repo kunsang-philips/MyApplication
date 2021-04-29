@@ -1,10 +1,10 @@
-package com.example.myapplication.ui.main
+package com.example.myapplication.livedata
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.myapplication.repository.UserRepository
 import com.example.myapplication.room.User
-import com.example.myapplication.ui.main.repository.UserRepository
 import kotlinx.coroutines.launch
 
 class LiveDataViewModel : ViewModel() {

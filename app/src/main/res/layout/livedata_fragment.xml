@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.myapplication.ui.main.LiveDataViewModel" />
+            type="com.example.myapplication.livedata.LiveDataViewModel" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -16,7 +16,7 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
-        tools:context=".ui.main.LiveDataFragment">
+        tools:context=".livedata.LiveDataFragment">
 
         <TextView
             android:id="@+id/textView"

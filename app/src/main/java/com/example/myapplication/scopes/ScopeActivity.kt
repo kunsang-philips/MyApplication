@@ -1,8 +1,9 @@
-package com.example.myapplication
+package com.example.myapplication.scopes
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.myapplication.R
 import kotlinx.android.synthetic.main.activity_scope.*
 
 class ScopeActivity : AppCompatActivity() {

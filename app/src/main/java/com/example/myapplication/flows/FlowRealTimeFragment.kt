@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.main
+package com.example.myapplication.flows
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FlowRealTimeFragmentBinding
-import kotlinx.android.synthetic.main.livedata_fragment.view.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch

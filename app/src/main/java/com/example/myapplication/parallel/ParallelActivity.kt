@@ -1,10 +1,11 @@
-package com.example.myapplication
+package com.example.myapplication.parallel
 
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.example.myapplication.R
 import kotlinx.android.synthetic.main.activity_sequential.*
 import kotlinx.coroutines.*
 

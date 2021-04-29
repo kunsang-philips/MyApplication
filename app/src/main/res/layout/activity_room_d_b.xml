@@ -7,7 +7,7 @@
     android:layout_gravity="center"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".ui.main.RoomDBActivity">
+    tools:context=".room.RoomDBActivity">
 
     <TextView
         android:id="@+id/textView"

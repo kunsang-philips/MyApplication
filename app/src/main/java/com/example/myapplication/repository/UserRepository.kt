@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.main.repository
+package com.example.myapplication.repository
 
 import com.example.myapplication.room.User
 

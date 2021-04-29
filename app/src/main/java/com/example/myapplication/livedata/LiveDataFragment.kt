@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.main
+package com.example.myapplication.livedata
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,8 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.room.Room
 import com.example.myapplication.R
 import com.example.myapplication.databinding.LivedataFragmentBinding
+import com.example.myapplication.repository.UserRepositoryImpl
 import com.example.myapplication.room.AppDatabase
-import com.example.myapplication.ui.main.repository.UserRepositoryImpl
 
 class LiveDataFragment : Fragment() {
     private lateinit var viewBinder: LivedataFragmentBinding

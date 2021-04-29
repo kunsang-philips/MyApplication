@@ -1,8 +1,8 @@
-package com.example.myapplication
+package com.example.myapplication.flows
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.myapplication.ui.main.FlowRealTimeFragment
+import com.example.myapplication.R
 
 class FlowRealTimeActivity : AppCompatActivity() {
 

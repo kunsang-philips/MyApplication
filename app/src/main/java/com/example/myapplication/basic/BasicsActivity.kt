@@ -1,8 +1,9 @@
-package com.example.myapplication
+package com.example.myapplication.basic
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.example.myapplication.R
 import kotlinx.android.synthetic.main.activity_basics.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

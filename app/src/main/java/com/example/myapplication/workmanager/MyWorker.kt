@@ -26,7 +26,7 @@ class MyWorker(val context: Context, workerParams: WorkerParameters) :
             networkOperation()
         }
         if (!isStopped)
-            displayNotification("My Worker", getUsers())
+            displayNotification(getUsers())
         return Result.success()
     }
 
@@ -46,7 +46,7 @@ class MyWorker(val context: Context, workerParams: WorkerParameters) :
         insertUsers(users)
     }
 
-    private fun displayNotification(title: String, task: String) {
+    private fun displayNotification(task: String) {
         val notificationManager =
             applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -61,7 +61,7 @@ class MyWorker(val context: Context, workerParams: WorkerParameters) :
             getApplicationContext(),
             "simplifiedcoding"
         )
-            .setContentTitle(title)
+            .setContentTitle("My Worker")
             .setContentText(task)
             .setSmallIcon(R.mipmap.ic_launcher)
         notificationManager.notify(1, notification.build())
@@ -78,7 +78,7 @@ class MyWorker(val context: Context, workerParams: WorkerParameters) :
         Log.e("FAFA", "Thread : ${Thread.currentThread().name}")
         var text = ""
         db.userDao().getAll().forEach {
-            text += ("${it.firstName} ${it.lastName}\n")
+            text += ("${it.firstName} ${it.lastName}, \n")
         }
         return text
     }

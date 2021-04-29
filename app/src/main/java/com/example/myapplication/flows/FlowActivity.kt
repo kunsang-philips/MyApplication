@@ -1,8 +1,9 @@
-package com.example.myapplication
+package com.example.myapplication.flows
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.example.myapplication.R
 import kotlinx.android.synthetic.main.activity_flow.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
