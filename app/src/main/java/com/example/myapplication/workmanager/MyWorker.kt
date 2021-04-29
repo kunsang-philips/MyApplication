@@ -6,33 +6,42 @@ import android.content.Context
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.room.Room
-import androidx.work.Worker
+import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.example.myapplication.R
 import com.example.myapplication.room.AppDatabase
 import com.example.myapplication.room.User
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.delay
 
 class MyWorker(context: Context, workerParams: WorkerParameters) :
-    Worker(context, workerParams) {
+    CoroutineWorker(context, workerParams) {
     private lateinit var db: AppDatabase
 
-    override fun doWork(): Result {
-        CoroutineScope(IO).launch {
-            doSomeDBOperation()
-        }
+    override suspend fun doWork(): Result {
+        initializeRoomDB()
+        dbOperation()
+        networkOperation()
+        displayNotification(getUsers())
         return Result.success()
     }
 
-    private suspend fun doSomeDBOperation() {
-        initializeRoomDB()
-        insertUsers()
-        displayNotification("My Worker", getUsers())
+    private suspend fun networkOperation() {
+        delay(2000)
+        val users = mutableListOf<User>()
+        users.add(User(4, "Sachin", "Tendulkar"))
+        users.add(User(5, "Rahul", "Dravid"))
+        insertUsers(users)
     }
 
-    private fun displayNotification(title: String, task: String) {
+    private suspend fun dbOperation() {
+        val users = mutableListOf<User>()
+        users.add(User(1, "Virat", "Kohli"))
+        users.add(User(2, "Rohit", "Sharma"))
+        insertUsers(users)
+        delay(2000)
+    }
+
+    private fun displayNotification(task: String) {
         val notificationManager =
             applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -47,7 +56,7 @@ class MyWorker(context: Context, workerParams: WorkerParameters) :
             getApplicationContext(),
             "simplifiedcoding"
         )
-            .setContentTitle(title)
+            .setContentTitle("Cricketers")
             .setContentText(task)
             .setSmallIcon(R.mipmap.ic_launcher)
         notificationManager.notify(1, notification.build())
@@ -62,16 +71,13 @@ class MyWorker(context: Context, workerParams: WorkerParameters) :
 
     private suspend fun getUsers(): String {
         var text = ""
-        db.userDaoWithLiveData().getAll()?.value?.forEach {
-            text += ("${it.firstName} ${it.lastName}\n")
+        db.userDaoForWorkManager().getAll().forEach {
+            text += ("${it.firstName}  ${it.lastName} ,\n")
         }
         return text
     }
 
-    private suspend fun insertUsers() {
-        val list = mutableListOf<User>()
-        list.add(User(1, "Virat", "Kohli"))
-        list.add(User(2, "Rohit", "Sharma"))
-        db.userDaoWithLiveData().insertAll(list)
+    private suspend fun insertUsers(users: List<User>) {
+        db.userDao().insertAll(users)
     }
 }

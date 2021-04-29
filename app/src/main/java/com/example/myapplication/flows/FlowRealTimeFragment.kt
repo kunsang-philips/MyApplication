@@ -25,7 +25,8 @@ class FlowRealTimeFragment : Fragment() {
     private lateinit var viewModel: FlowViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         viewBinder =
@@ -48,5 +49,4 @@ class FlowRealTimeFragment : Fragment() {
         viewBinder.lifecycleOwner = viewLifecycleOwner
         viewBinder.executePendingBindings()
     }
-
 }
