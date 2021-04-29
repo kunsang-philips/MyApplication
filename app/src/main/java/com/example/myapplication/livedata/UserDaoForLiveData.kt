@@ -1,4 +1,4 @@
-package com.example.myapplication.workmanager
+package com.example.myapplication.livedata
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
@@ -8,9 +8,9 @@ import androidx.room.Query
 import com.example.myapplication.room.User
 
 @Dao
-interface UserDaoForWorkManager {
+interface UserDaoForLiveData {
     @Query("SELECT * FROM user")
-    suspend fun getAll(): List<User>
+    fun getAll(): LiveData<List<User>>
 
     @Query(
         "SELECT * FROM user WHERE first_name LIKE :first AND " +

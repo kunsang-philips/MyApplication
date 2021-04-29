@@ -1,15 +1,15 @@
 package com.example.myapplication.repository
 
 import androidx.lifecycle.liveData
+import com.example.myapplication.livedata.UserDaoForLiveData
 import com.example.myapplication.room.User
-import com.example.myapplication.workmanager.UserDaoForWorkManager
 import kotlinx.coroutines.delay
 
-class UserRepositoryImpl(private val userDao: UserDaoForWorkManager) : UserRepository {
+class UserRepositoryImpl(private val userDaoForLiveData: UserDaoForLiveData) : UserRepository {
     override fun getAllUsers() = liveData {
-        emitSource(userDao.getAll())
+        emitSource(userDaoForLiveData.getAll())
         val users = fetchNewData()
-        userDao.insertAll(users)
+        userDaoForLiveData.insertAll(users)
     }
 
     private suspend fun fetchNewData(): List<User> {
@@ -21,10 +21,10 @@ class UserRepositoryImpl(private val userDao: UserDaoForWorkManager) : UserRepos
     }
 
     override suspend fun insertUsers(users: List<User>) {
-        userDao.insertAll(users)
+        userDaoForLiveData.insertAll(users)
     }
 
     override suspend fun deleteAllUser() {
-        userDao.deleteAll()
+        userDaoForLiveData.deleteAll()
     }
 }
