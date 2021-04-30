@@ -1,7 +1,7 @@
-package com.example.myapplication.repository
+package com.example.coroutinesample.repository
 
-import com.example.myapplication.room.User
-import com.example.myapplication.room.UserDao
+import com.example.coroutinesample.room.User
+import com.example.coroutinesample.room.UserDao
 
 class UserRepositoryImpl(private val userDao: UserDao) : UserRepository {
     override fun getAllUsers() = userDao.getAll()

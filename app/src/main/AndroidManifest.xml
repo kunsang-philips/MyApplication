@@ -9,7 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.coroutinesample.unitTesting.CoroutineTestActivity" />
         <activity android:name="com.example.coroutinesample.workmanager.WorkManagerActivity" />
         <activity android:name="com.example.coroutinesample.room.RoomDBActivity" />
         <activity android:name="com.example.coroutinesample.MainActivity">

@@ -1,4 +1,4 @@
-package com.example.myapplication.room
+package com.example.coroutinesample.room
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

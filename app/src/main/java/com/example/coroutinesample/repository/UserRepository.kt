@@ -1,6 +1,6 @@
-package com.example.myapplication.repository
+package com.example.coroutinesample.repository
 
-import com.example.myapplication.room.User
+import com.example.coroutinesample.room.User
 
 interface UserRepository {
     fun getAllUsers(): List<User>

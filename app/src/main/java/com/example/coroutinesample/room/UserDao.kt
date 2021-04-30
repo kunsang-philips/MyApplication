@@ -1,10 +1,11 @@
-package com.example.myapplication.room
+package com.example.coroutinesample.room
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.example.coroutinesample.room.User
 
 @Dao
 interface UserDao {

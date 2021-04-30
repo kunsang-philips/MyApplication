@@ -1,4 +1,4 @@
-package com.example.myapplication.workmanager
+package com.example.coroutinesample.workmanager
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -10,8 +10,8 @@ import androidx.room.Room
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.example.coroutinesample.R
-import com.example.myapplication.room.AppDatabase
-import com.example.myapplication.room.User
+import com.example.coroutinesample.room.AppDatabase
+import com.example.coroutinesample.room.User
 
 class MyWorker(val context: Context, workerParams: WorkerParameters) :
     Worker(context, workerParams) {

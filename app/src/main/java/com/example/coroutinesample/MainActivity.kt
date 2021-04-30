@@ -1,11 +1,10 @@
-package com.example.myapplication
+package com.example.coroutinesample
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.coroutinesample.R
-import com.example.myapplication.room.RoomDBActivity
-import com.example.myapplication.workmanager.WorkManagerActivity
+import com.example.coroutinesample.room.RoomDBActivity
+import com.example.coroutinesample.workmanager.WorkManagerActivity
 import kotlinx.android.synthetic.main.activity_main.roomDB
 import kotlinx.android.synthetic.main.activity_main.workManager
 
