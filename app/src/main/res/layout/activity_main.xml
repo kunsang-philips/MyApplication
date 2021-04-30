@@ -88,11 +88,5 @@
             android:layout_height="wrap_content"
             android:text="Realtime Flow" />
 
-        <Button
-            android:id="@+id/coroutineTest"
-            android:text="Coroutine Test"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
     </LinearLayout>
 </ScrollView>

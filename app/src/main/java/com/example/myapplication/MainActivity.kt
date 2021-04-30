@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.basic.BasicsActivity
-import com.example.myapplication.coroutinetest.CoroutineTestActivity
 import com.example.myapplication.flows.FlowActivity
 import com.example.myapplication.flows.FlowRealTimeActivity
 import com.example.myapplication.livedata.LiveDataActivity
@@ -63,9 +62,6 @@ class MainActivity : AppCompatActivity() {
         }
         workManager.setOnClickListener {
             startActivity(Intent(this, WorkmanagerActivity::class.java))
-        }
-        coroutineTest.setOnClickListener {
-            startActivity(Intent(this, CoroutineTestActivity::class.java))
         }
     }
 }
