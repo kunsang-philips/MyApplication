@@ -20,7 +20,7 @@ class BasicsActivity : AppCompatActivity() {
             lifecycleScope.launch {
                 textView.text = ""
                 textView.append(doLongRunningTask())
-                textView.append(doAnotherLongRunningTaskAfter())
+                textView.append(doAnotherLongRunningTask())
             }
         }
     }
@@ -30,7 +30,7 @@ class BasicsActivity : AppCompatActivity() {
         return "doLongRunningTask is done\n"
     }
 
-    private suspend fun doAnotherLongRunningTaskAfter(): String {
+    private suspend fun doAnotherLongRunningTask(): String {
         delay(3000)
         return "doAnotherLongRunningTaskAfter"
     }

@@ -17,7 +17,7 @@ class CallBackActivity : AppCompatActivity() {
                     runOnUiThread {
                         textMessage.text = someMessage
                     }
-                    someImplClass.doAnotherLongRunningTaskAfter(object : LongRunningTask {
+                    someImplClass.doAnotherLongRunningTask(object : LongRunningTask {
                         override fun onLongRunningTask(someMessage: String) {
                             runOnUiThread {
                                 textMessage.text = someMessage
@@ -36,7 +36,7 @@ class SomeImplClass {
         longRunningTask.onLongRunningTask("doLongRunningTask is done")
     }
 
-    fun doAnotherLongRunningTaskAfter(longRunningTask: LongRunningTask) {
+    fun doAnotherLongRunningTask(longRunningTask: LongRunningTask) {
         AsyncTask.execute {
             Thread.sleep(3000)
             longRunningTask.onLongRunningTask("doAnotherLongRunningTaskAfter is done")
