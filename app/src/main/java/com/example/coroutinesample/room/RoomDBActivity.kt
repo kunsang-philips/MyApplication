@@ -1,6 +1,5 @@
 package com.example.coroutinesample.room
 
-import android.os.AsyncTask
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
