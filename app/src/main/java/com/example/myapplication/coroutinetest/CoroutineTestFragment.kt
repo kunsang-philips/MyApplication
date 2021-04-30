@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.R
 import kotlinx.android.synthetic.main.main_fragment.buttonLike
+import kotlinx.android.synthetic.main.main_fragment.view.buttonLike
+import kotlinx.android.synthetic.main.main_fragment.view.textViewLikeCount
+import kotlinx.coroutines.Dispatchers.IO
 
 class CoroutineTestFragment : Fragment() {
 
@@ -15,6 +17,7 @@ class CoroutineTestFragment : Fragment() {
         fun newInstance() = CoroutineTestFragment()
     }
 
+    private var myview: View? = null
     private lateinit var viewModel: CoroutineTestViewModel
 
     override fun onCreateView(
@@ -22,15 +25,21 @@ class CoroutineTestFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view = inflater.inflate(R.layout.main_fragment, container, false)
-        buttonLike.setOnClickListener {
+        myview = inflater.inflate(R.layout.main_fragment, container, false)
+        myview!!.buttonLike.setOnClickListener {
             viewModel.addLikeCount()
         }
-        return view
+        return myview!!
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(CoroutineTestViewModel::class.java)
+        viewModel = CoroutineTestViewModel(IO)
+        viewModel.likeCountLiveData.observe(
+            viewLifecycleOwner,
+            {
+                myview!!.textViewLikeCount.text = it
+            }
+        )
     }
 }
