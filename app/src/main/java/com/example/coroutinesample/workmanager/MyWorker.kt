@@ -78,6 +78,6 @@ class MyWorker(context: Context, workerParams: WorkerParameters) :
     }
 
     private suspend fun insertUsers(users: List<User>) {
-        db.userDao().insertAll(users)
+        db.userDaoForWorkManager().insertAll(users)
     }
 }

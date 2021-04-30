@@ -1,6 +1,5 @@
 package com.example.coroutinesample.room
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -8,9 +7,9 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 
 @Dao
-interface UserDao {
+interface UserDaoForRoom {
     @Query("SELECT * FROM user")
-    fun getAll(): LiveData<List<User>>
+    suspend fun getAll(): List<User>
 
     @Query(
         "SELECT * FROM user WHERE first_name LIKE :first AND " +
@@ -23,4 +22,7 @@ interface UserDao {
 
     @Delete
     fun delete(user: User)
+
+    @Query("DELETE FROM user")
+    suspend fun deleteAll()
 }

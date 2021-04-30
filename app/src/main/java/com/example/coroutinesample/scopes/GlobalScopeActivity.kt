@@ -27,7 +27,7 @@ class GlobalScopeActivity : AppCompatActivity() {
                     launch(Main) {
                         doSomeLongRunningWork1("Coroutine Scope work")
                     }
-                    GlobalScope.launch {
+                    val data = GlobalScope.launch {
                         doSomeLongRunningWork2("Global Scope work")
                     }
                 }
