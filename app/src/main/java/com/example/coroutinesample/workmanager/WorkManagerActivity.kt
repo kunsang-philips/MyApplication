@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
-import com.example.myapplication.R
+import com.example.coroutinesample.R
 import kotlinx.android.synthetic.main.activity_work_manager.buttonEnqueue
 import kotlinx.android.synthetic.main.activity_work_manager.buttonStop
 

@@ -2,7 +2,7 @@ package com.example.myapplication.unitTesting
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.myapplication.R
+import com.example.coroutinesample.R
 import com.example.myapplication.unitTesting.ui.main.CoroutineTestFragment
 
 class CoroutineTestActivity : AppCompatActivity() {

@@ -4,7 +4,7 @@ import android.os.AsyncTask
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.room.Room
-import com.example.myapplication.R
+import com.example.coroutinesample.R
 import kotlinx.android.synthetic.main.activity_room_db.buttonDeleteAllUsers
 import kotlinx.android.synthetic.main.activity_room_db.buttonFetch
 import kotlinx.android.synthetic.main.activity_room_db.textView
