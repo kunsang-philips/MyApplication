@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.myapplication.flows.FlowViewModel" />
+            type="com.example.coroutinesample.flows.FlowViewModel" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"

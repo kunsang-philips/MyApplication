@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.myapplication">
+    package="com.example.coroutinesample">
 
     <application
         android:allowBackup="true"
@@ -10,20 +10,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".coroutinetest.CoroutineTestActivity"></activity>
-        <activity android:name=".workmanager.WorkmanagerActivity" />
-        <activity android:name=".room.RoomDBActivity" />
-        <activity android:name=".flows.FlowRealTimeActivity" />
-        <activity android:name=".flows.FlowActivity" />
-        <activity android:name=".livedata.LiveDataActivity" />
-        <activity android:name=".structured.StructuredConcurrencyActivity" />
-        <activity android:name=".scopes.GlobalScopeActivity" />
-        <activity android:name=".basic.BasicsActivity" />
-        <activity android:name=".CallBackActivity" />
-        <activity android:name=".scopes.ScopeSecondActivity" />
-        <activity android:name=".scopes.ScopeActivity" />
-        <activity android:name=".parallel.ParallelActivity" />
-        <activity android:name=".sequential.SequentialActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name="com.example.coroutinesample.workmanager.WorkmanagerActivity" />
+        <activity android:name="com.example.coroutinesample.room.RoomDBActivity" />
+        <activity android:name="com.example.coroutinesample.flows.FlowRealTimeActivity" />
+        <activity android:name="com.example.coroutinesample.flows.FlowActivity" />
+        <activity android:name="com.example.coroutinesample.livedata.LiveDataActivity" />
+        <activity android:name="com.example.coroutinesample.structured.StructuredConcurrencyActivity" />
+        <activity android:name="com.example.coroutinesample.scopes.GlobalScopeActivity" />
+        <activity android:name="com.example.coroutinesample.basic.BasicsActivity" />
+        <activity android:name="com.example.coroutinesample.CallBackActivity" />
+        <activity android:name="com.example.coroutinesample.scopes.ScopeSecondActivity" />
+        <activity android:name="com.example.coroutinesample.scopes.ScopeActivity" />
+        <activity android:name="com.example.coroutinesample.parallel.ParallelActivity" />
+        <activity android:name="com.example.coroutinesample.sequential.SequentialActivity" />
+        <activity android:name="com.example.coroutinesample.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
