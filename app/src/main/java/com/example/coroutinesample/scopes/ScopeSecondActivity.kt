@@ -23,7 +23,7 @@ class ScopeSecondActivity : AppCompatActivity() {
 
     private fun secondApproach() {
         start.setOnClickListener {
-            lifecycleScope.launch {
+            lifecycleScope.launch(Main) {
                 doSomeLongRunningTaskWithScope()
             }
         }

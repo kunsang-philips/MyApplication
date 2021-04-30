@@ -24,7 +24,7 @@ class GlobalScopeActivity : AppCompatActivity() {
                 button.text = "Stop"
                 textView.text = "Job started"
                 parentJob = lifecycleScope.launch {
-                    launch {
+                    launch(Main) {
                         doSomeLongRunningWork1("Coroutine Scope work")
                     }
                     GlobalScope.launch {

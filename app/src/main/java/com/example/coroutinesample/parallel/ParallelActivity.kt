@@ -53,6 +53,7 @@ class ParallelActivity : AppCompatActivity() {
                     secondTextView.text = "Count Done"
                 }
                 job1.join()
+                job2.join()
                 start.text = "End"
             }
         }

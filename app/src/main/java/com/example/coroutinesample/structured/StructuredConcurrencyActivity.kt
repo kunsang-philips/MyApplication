@@ -17,6 +17,8 @@ import java.io.InvalidClassException
 
 class StructuredConcurrencyActivity : AppCompatActivity() {
     var parentJob: Job? = null
+    val isHappyFlow = false
+
     private val handler = CoroutineExceptionHandler { _, exception ->
         when (exception) {
             is InvalidClassException -> {
@@ -63,28 +65,41 @@ class StructuredConcurrencyActivity : AppCompatActivity() {
                     val result = doSomeWork3()
                     Log.d("FAFA", "Result C $result")
                 }
-                doSomeWork4()
+                val result = doSomeWork4()
+                Log.d("FAFA", "Result Parent $result")
             }
         }
     }
 
     private suspend fun doSomeWork1(): Int {
         delay(1 * 1000L)
+        if (isHappyFlow) {
+            return 1
+        }
         throw InvalidClassException("Error in 1")
     }
 
     private suspend fun doSomeWork2(): Int {
         delay(2 * 1000L)
+        if (isHappyFlow) {
+            return 2
+        }
         throw OutOfMemoryError("Error in 2")
     }
 
     private suspend fun doSomeWork3(): Int {
         delay(3 * 1000L)
+        if (isHappyFlow) {
+            return 3
+        }
         throw NumberFormatException("Error in 3")
     }
 
     private suspend fun doSomeWork4(): Int {
         delay(4 * 1000L)
+        if (isHappyFlow) {
+            return 4
+        }
         throw Exception("Error in Parent")
     }
 }
