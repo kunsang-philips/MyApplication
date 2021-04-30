@@ -17,48 +17,6 @@
         tools:context=".MainActivity">
 
         <Button
-            android:id="@+id/callBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="CallBack" />
-
-        <Button
-            android:id="@+id/basic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Basics" />
-
-        <Button
-            android:id="@+id/sequential"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sequential" />
-
-        <Button
-            android:id="@+id/parallel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Parallel" />
-
-        <Button
-            android:id="@+id/scope"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Scope" />
-
-        <Button
-            android:id="@+id/globalScope"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Dangerous GlobalScope" />
-
-        <Button
-            android:id="@+id/concurrency"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Structured Concurrency" />
-
-        <Button
             android:id="@+id/roomDB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -69,27 +27,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Work Manager" />
-
-        <Button
-            android:id="@+id/liveData"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Live Data"
-            android:visibility="gone" />
-
-        <Button
-            android:id="@+id/flow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Basic Flow"
-            android:visibility="gone" />
-
-        <Button
-            android:id="@+id/flow1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Realtime Flow"
-            android:visibility="gone" />
 
     </LinearLayout>
 </ScrollView>
